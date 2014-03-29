@@ -5,7 +5,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Hashtable;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -14,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import beans.ConnexionClient;
 import connectionDB.ConnexionDB;
 
 public class ServletLogin extends HttpServlet {
@@ -33,17 +33,40 @@ public class ServletLogin extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String deconnexion = request.getParameter("deconnexion");
+		String signOut = request.getParameter("signOut");
 		String identifiant = request.getParameter("email");
 		String password = request.getParameter("password");
+		String userType = request.getParameter("userType");
+		ConnexionClient form = (ConnexionClient) request.getAttribute("form");
+		System.out.println(form.getResultat());
 		CreateConnection();
 		HttpSession session = request.getSession();
-		if (deconnexion != null) {
+		if (signOut != null) {
 			session.invalidate();
 			this.getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
-		} else if (authentification(identifiant, password)) {
-			session.setAttribute("utilisateur", identifiant);
-			this.getServletContext().getRequestDispatcher("/accueil.jsp").forward(request, response);
+		}
+		if (userType.equals("student") || userType.equals("exStudent")) {
+			if (authentificationStudent(identifiant, password)) {
+				System.out.println("Authentification succeeded");
+				session.setAttribute("user", identifiant);
+				System.out.println("Redirection to home...");
+				response.sendRedirect(request.getContextPath() + "/protected/home.jsp");
+			} else {
+				form.getErreurs().put("authentificationError", "Invalid email or password...");
+				session.setAttribute("form", form);
+				this.getServletContext().getRequestDispatcher("/errorLogin.jsp").forward(request, response);
+			}
+		} else if (userType.equals("professor")) {
+			if (authentificationProf(identifiant, password)) {
+				System.out.println("Authentification succeeded");
+				session.setAttribute("user", identifiant);
+				System.out.println("Redirection to home...");
+				response.sendRedirect(request.getContextPath() + "/protected/home.jsp");
+			} else {
+				form.getErreurs().put("authentificationError", "Invalid email or password...");
+				session.setAttribute("form", form);
+				this.getServletContext().getRequestDispatcher("/errorLogin.jsp").forward(request, response);
+			}
 		}
 		Destroy();
 	}
@@ -83,16 +106,34 @@ public class ServletLogin extends HttpServlet {
 	 * @param mdp
 	 * @return vrai si l'authentification est correct
 	 */
-	public boolean authentification(String identifiant, String mdp) {
-		String ident = null;
+	public boolean authentificationStudent(String identifiant, String mdp) {
+		String email = null;
 		String motDePasse = null;
 		boolean success = false;
 		try {
-			ResultSet rs = st.executeQuery("SELECT identifiant,password FROM user ");
+			rs = st.executeQuery("SELECT email,password FROM etudiant");
 			while (rs.next()) {
-				ident = rs.getString("identifiant");
+				email = rs.getString("email");
 				motDePasse = rs.getString("password");
-				success = (ident.equals(identifiant) && motDePasse.equals(mdp));
+				success = (email.equals(identifiant) && motDePasse.equals(mdp));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return success;
+	}
+
+	public boolean authentificationProf(String identifiant, String mdp) {
+		String email = null;
+		String motDePasse = null;
+		boolean success = false;
+		try {
+			rs = st.executeQuery("SELECT email, password FROM professeur");
+			while (rs.next()) {
+				email = rs.getString("email");
+				motDePasse = rs.getString("password");
+				success = (email.equals(identifiant) && motDePasse.equals(mdp));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

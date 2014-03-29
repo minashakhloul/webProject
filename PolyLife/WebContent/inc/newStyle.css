@@ -30,9 +30,8 @@ body {
 #modulePannel {
 	background-color: Gainsboro;
 	margin-bottom: 30px;
-	margin-left:5px;
+	margin-left: 5px;
 	border-radius: 5px;
-	
 }
 
 .span9 {
@@ -42,9 +41,9 @@ body {
 	padding-bottom: -10px;
 }
 
-#module{
+#module {
 	border: 1px solid #666666;
-	filter: alpha(opacity = 100);
+	filter: alpha(opacity =   100);
 	-moz-opacity: 1;
 	opacity: 1;
 	padding-left: 10px;
@@ -53,46 +52,52 @@ body {
 	margin-bottom: 10px;
 	border-radius: 5px;
 }
-#erreur{
-	color:red;
+
+#erreur {
+	color: red;
 }
-#radiusDanger{
-	border-radius:5px;
+
+#radiusDanger {
+	border-radius: 5px;
 }
-#caret{
-	color:white;
+
+#caret {
+	color: white;
 }
-#fermer{
-	margin-left:98%;
-	weight:30px;
-	height:20px;
+
+#fermer {
+	margin-left: 98%;
+	weight: 30px;
+	height: 20px;
 }
-#fermer input{
-	border-radius:30px;
-	margin-top:-50px;
+
+#fermer input {
+	border-radius: 30px;
+	margin-top: -50px;
 }
 
 .span9 #module:lastchild {
 	margin-bottom: 0px;
 }
-.span9 p 
-{
-	font-weight:bold;
-	font-size:20px;
 
+.span9 p {
+	font-weight: bold;
+	font-size: 20px;
 }
-.span9 label
-{
-	font-weight:bold;
+
+.span9 label {
+	font-weight: bold;
 }
+
 .span2 p {
 	align: right;
-	font-size:17px;
+	font-size: 17px;
 }
-.span9 h1
-{
-	margin-bottom:30px;
+
+.span9 h1 {
+	margin-bottom: 30px;
 }
+
 #csslogin {
 	margin-left: 60%;
 	margin-right: 40%;
@@ -115,29 +120,32 @@ body {
 	border: 1px solid #ccc;
 	height: 34px;
 	border-radius: 10px;
-	background: url(favicon.ico) no-repeat 96%
-		#ddd;
+	background: url(favicon.ico) no-repeat 96% #ddd;
 	-webkit-appearance: none;
 }
 
-#module .row-fluid{
-	margin-bottom:10px;
+#module .row-fluid {
+	margin-bottom: 10px;
 }
-#module h1{
-	margin-top:-20px;
+
+#module h1 {
+	margin-top: -20px;
 }
-#module .row-fluid .span3 p{
-	font-weight:bold;
-	margin-right:30px;
-	margin-left:30px;
+
+#module .row-fluid .span3 p {
+	font-weight: bold;
+	margin-right: 30px;
+	margin-left: 30px;
 }
+
 .styled {
 	height: 34px;
 	overflow: hidden;
-	margin-top:20px;
+	margin-top: 20px;
 }
-form{
-	margin-top:20px;
+
+form {
+	margin-top: 20px;
 }
 
 #validation {
@@ -149,8 +157,8 @@ form{
 	align: center;
 }
 
-.getProtocole{
-	font-weight:bold;
+#errorLabel {
+	color : red;
 }
 
 @CHARSET "ISO-8859-1";

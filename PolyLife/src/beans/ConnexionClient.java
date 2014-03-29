@@ -9,7 +9,7 @@ public final class ConnexionClient {
 
 	private static final String CHAMP_EMAIL = "email";
 	private static final String CHAMP_PASS = "password";
-	private String resultat;	
+	private String resultat;
 	private Map<String, String> erreurs = new HashMap<String, String>();
 
 	public String getResultat() {
@@ -18,6 +18,14 @@ public final class ConnexionClient {
 
 	public Map<String, String> getErreurs() {
 		return erreurs;
+	}
+
+	public static String getChampEmail() {
+		return CHAMP_EMAIL;
+	}
+
+	public static String getChampPass() {
+		return CHAMP_PASS;
 	}
 
 	public Client connecterUtilisateur(HttpServletRequest request) {
@@ -83,7 +91,6 @@ public final class ConnexionClient {
 	 */
 	private static String getValeurChamp(HttpServletRequest request, String nomChamp) {
 		String valeur = request.getParameter(nomChamp);
-		System.out.println(valeur);
 		if (valeur == null || valeur.trim().length() == 0) {
 			return null;
 		} else {
