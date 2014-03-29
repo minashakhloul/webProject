@@ -31,7 +31,8 @@ public class LoginFilter implements Filter {
 			// No logged-in user found, so redirect to login page.
 			resp.sendRedirect(req.getContextPath() + "/login.jsp");
 		} else {
-			chain.doFilter(req, resp); // Logged-in user found, so just continue request.
+			chain.doFilter(req, resp); // Logged-in user found, so just continue
+										// request.
 		}
 	}
 }

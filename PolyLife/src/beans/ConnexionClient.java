@@ -61,7 +61,7 @@ public final class ConnexionClient {
 	 */
 	private void validationEmail(String email) throws Exception {
 		if (email != null && !email.matches("([^.@]+)(\\.[^.@]+)*@([^.@]+\\.)+([^.@]+)")) {
-			throw new Exception("Merci de saisir une adresse mail valide.");
+			throw new Exception("Please insert a valid email.");
 		}
 	}
 
@@ -71,10 +71,10 @@ public final class ConnexionClient {
 	private void validationMotDePasse(String motDePasse) throws Exception {
 		if (motDePasse != null) {
 			if (motDePasse.length() < 3) {
-				throw new Exception("Le mot de passe doit contenir au moins 3 caractères.");
+				throw new Exception("The password must contain at least 3 characters.");
 			}
 		} else {
-			throw new Exception("Merci de saisir votre mot de passe.");
+			throw new Exception("Please insert your password");
 		}
 	}
 

@@ -20,7 +20,6 @@ public class Connexion extends HttpServlet {
 	public static final String VUE = "/login.jsp";
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		/* Affichage de la page de connexion */
 		doPost(request, response);
 	}
 
