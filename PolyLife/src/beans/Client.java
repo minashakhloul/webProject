@@ -6,16 +6,6 @@ public class Client {
 	private String login;
 	private String userType;
 
-	public Client() {
-		new Client(null, null, null);
-	}
-
-	public Client(String password, String login, String userType) {
-		this.password = password;
-		this.login = login;
-		this.userType = userType;
-	}
-
 	public void setMotDePasse(String motDePasse) {
 		this.password = motDePasse;
 	}
@@ -36,7 +26,7 @@ public class Client {
 		this.login = login;
 	}
 
-	public String getLogin() {
+	public String getlogin() {
 		return login;
 	}
 }
