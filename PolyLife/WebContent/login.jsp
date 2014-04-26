@@ -1,8 +1,8 @@
 <%@ page import="java.util.*"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:import url="W3C.jsp" />
+<c:import url="/protected/W3C.jsp" />
 <body background="./inc/background-nightlights.jpg"	style="background-repeat: no-repeat">
-	<form class="well span6 myClass" method="get" action="connexion"id="csslogin">
+	<form class="well span6 myClass" method="post" action="connexion"id="csslogin">
 		<h4>Sign in </h4>
 		<label>Username :</label>
 		<input type="text" class="span3"align="middle" placeholder="Login..." id="email" name="email"/>

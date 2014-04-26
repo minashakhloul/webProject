@@ -9,8 +9,8 @@
 				<c:out value="${error.value}"></c:out>
 			</c:forEach>
 		</label>
-		<label>Username :</label><label></label>
-		<input type="text" class="span3" align="middle" value = "${utilisateur.getLogin()}" id="email" name="email"/>
+		<label>Username :</label>
+		<input type="text" class="span3" align="middle" value = "${Client.utilisateur.getLogin()}" id="email" name="email"/>
 		<label>Password :</label>
 		<input type="password" class="span3" align="middle" value ="" id="password" name="password" /></br>
 		<select name="userType" id="type">

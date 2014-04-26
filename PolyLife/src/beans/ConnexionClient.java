@@ -9,7 +9,7 @@ public final class ConnexionClient {
 
 	private static final String CHAMP_EMAIL = "email";
 	private static final String CHAMP_PASS = "password";
-	private String resultat;	
+	private String resultat;
 	private Map<String, String> erreurs = new HashMap<String, String>();
 
 	public String getResultat() {
@@ -24,6 +24,7 @@ public final class ConnexionClient {
 		/* Récupération des champs du formulaire */
 		String email = getValeurChamp(request, CHAMP_EMAIL);
 		String motDePasse = getValeurChamp(request, CHAMP_PASS);
+		String userType = getValeurChamp(request, "userType");
 		Client utilisateur = new Client();
 		/* Validation du champ email. */
 		try {
@@ -31,7 +32,7 @@ public final class ConnexionClient {
 		} catch (Exception e) {
 			setErreur(CHAMP_EMAIL, e.getMessage());
 		}
-		utilisateur.setlogin(email);
+		utilisateur.setLogin(email);
 		/* Validation du champ mot de passe. */
 		try {
 			validationMotDePasse(motDePasse);
@@ -39,6 +40,7 @@ public final class ConnexionClient {
 			setErreur(CHAMP_PASS, e.getMessage());
 		}
 		utilisateur.setMotDePasse(motDePasse);
+		utilisateur.setUserType(userType);
 		/* Initialisation du résultat global de la validation. */
 		if (erreurs.isEmpty()) {
 			resultat = "Succès de la connexion.";
@@ -53,7 +55,7 @@ public final class ConnexionClient {
 	 */
 	private void validationEmail(String email) throws Exception {
 		if (email != null && !email.matches("([^.@]+)(\\.[^.@]+)*@([^.@]+\\.)+([^.@]+)")) {
-			throw new Exception("Merci de saisir une adresse mail valide.");
+			throw new Exception("Please insert a valid email");
 		}
 	}
 
@@ -63,10 +65,10 @@ public final class ConnexionClient {
 	private void validationMotDePasse(String motDePasse) throws Exception {
 		if (motDePasse != null) {
 			if (motDePasse.length() < 3) {
-				throw new Exception("Le mot de passe doit contenir au moins 3 caractères.");
+				throw new Exception("The password must contain at least 3 characters");
 			}
 		} else {
-			throw new Exception("Merci de saisir votre mot de passe.");
+			throw new Exception("Please insert your password");
 		}
 	}
 
@@ -83,7 +85,6 @@ public final class ConnexionClient {
 	 */
 	private static String getValeurChamp(HttpServletRequest request, String nomChamp) {
 		String valeur = request.getParameter(nomChamp);
-		System.out.println(valeur);
 		if (valeur == null || valeur.trim().length() == 0) {
 			return null;
 		} else {

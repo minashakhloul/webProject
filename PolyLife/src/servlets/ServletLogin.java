@@ -5,7 +5,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Hashtable;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -14,6 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import beans.Client;
+import beans.ConnexionClient;
+import beans.UserType;
 import connectionDB.ConnexionDB;
 
 public class ServletLogin extends HttpServlet {
@@ -23,6 +25,7 @@ public class ServletLogin extends HttpServlet {
 	private Statement st;
 	private ResultSet rs;
 	private Connection conn;
+	private Client utilisateur;
 
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
@@ -33,17 +36,25 @@ public class ServletLogin extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String deconnexion = request.getParameter("deconnexion");
-		String identifiant = request.getParameter("email");
-		String password = request.getParameter("password");
-		CreateConnection();
+		String signOut = request.getParameter("signOut");
 		HttpSession session = request.getSession();
-		if (deconnexion != null) {
+		utilisateur = (Client) session.getAttribute("utilisateur");
+		ConnexionClient form = (ConnexionClient) request.getAttribute("form");
+		String email = utilisateur.getLogin();
+		String password = utilisateur.getMotDePasse();
+		String userType = utilisateur.getUserType();
+		CreateConnection();
+		if (signOut != null) {
 			session.invalidate();
 			this.getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
-		} else if (authentification(identifiant, password)) {
-			session.setAttribute("utilisateur", identifiant);
-			this.getServletContext().getRequestDispatcher("/accueil.jsp").forward(request, response);
+		} else if (authentification(email, password, userType)) {
+			session.setAttribute("utilisateur", utilisateur);
+			this.getServletContext().getRequestDispatcher("/protected/acceuil.jsp").forward(request, response);
+		} else {
+			form.getErreurs().put("authentification", "Unknown email or password. Please try again");
+			session.setAttribute("form", form);
+			session.setAttribute("utilisateur", utilisateur);
+			this.getServletContext().getRequestDispatcher("/errorLogin.jsp").forward(request, response);
 		}
 		Destroy();
 	}
@@ -83,16 +94,31 @@ public class ServletLogin extends HttpServlet {
 	 * @param mdp
 	 * @return vrai si l'authentification est correct
 	 */
-	public boolean authentification(String identifiant, String mdp) {
+	public boolean authentification(String identifiant, String mdp, String typeUser) {
 		String ident = null;
 		String motDePasse = null;
 		boolean success = false;
+		ResultSet rs = null;
 		try {
-			ResultSet rs = st.executeQuery("SELECT identifiant,password FROM user ");
+			switch (UserType.getTypeOf(typeUser)) {
+			case STUDENT:
+				rs = st.executeQuery("SELECT email,password, nom, prenom FROM etudiant ");
+				break;
+			case EX_STUDENT:
+				rs = st.executeQuery("SELECT email,password FROM etudiant ");
+				break;
+			case PROFESSOR:
+				rs = st.executeQuery("SELECT email,password FROM professeur ");
+				break;
+			}
 			while (rs.next()) {
-				ident = rs.getString("identifiant");
+				ident = rs.getString("email");
 				motDePasse = rs.getString("password");
 				success = (ident.equals(identifiant) && motDePasse.equals(mdp));
+				if (success) {
+					utilisateur.setFirstName(rs.getString("prenom"));
+					utilisateur.setLastName(rs.getString("nom"));
+				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
