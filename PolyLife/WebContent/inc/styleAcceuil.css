@@ -1,0 +1,96 @@
+@CHARSET "ISO-8859-1";
+
+html, body {
+	font-family: arial;
+	margin: 0; 
+	padding: 0;
+}
+
+#header #nav {  
+    margin: 0; padding: 0;
+    padding-top:10px;
+    padding-bottom:10px;  
+    text-align: center; /* centrer le texte */
+    background-color:#0040FF;
+}  
+#header #nav li {  
+    display: inline;  
+    list-style: none;  
+}  
+#header #nav a {  
+    display:inline-block;  
+    margin: 0 30px;
+    color:white;
+    text-decoration:none;  
+}  
+ 
+
+#header #nav form input {  
+    display: inline;  
+    list-style: none;  
+}
+
+#header #nav li form {
+	display:block;
+	
+}
+
+#header #nav form input[type="submit"] {  
+    display:inline-block;  
+    margin:0;
+    padding-left:0;
+}
+
+#sidebar-left {
+	border-right: 1px dotted black;
+	float:left;
+	padding:10px;
+	width:15%;
+	height:100%;
+}
+
+#sidebar-right {
+	border-left: 1px dotted black;
+	float:right;
+	width:15%;
+	height:100%;
+}
+
+div.inside-sidebar {
+		padding:10px;
+}
+
+div#headcontentzone {
+	padding-top:15px;
+	margin-left:17%;
+	margin-right:16%;
+}
+
+.event {
+	border-radius:5px;
+	border: 1px solid gray;
+	padding: 10px;
+}
+
+.event h2 {
+	margin-top:0px;
+}
+
+.event div {
+	width:50%;
+	vertical-align: top; 
+}
+
+.event div.illustration {
+	width:30%;
+	display: inline-block
+}
+
+.event div.text {
+	width:69%;
+	display: inline-block
+}
+
+.event div.text p {
+	margin:0px;
+}
