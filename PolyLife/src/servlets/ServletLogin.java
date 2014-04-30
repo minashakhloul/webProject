@@ -67,8 +67,6 @@ public class ServletLogin extends HttpServlet {
 			con = new ConnexionDB();
 			Connection conn = con.connect;
 			st = conn.createStatement();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -118,6 +116,7 @@ public class ServletLogin extends HttpServlet {
 				if (success) {
 					utilisateur.setFirstName(rs.getString("prenom"));
 					utilisateur.setLastName(rs.getString("nom"));
+					break;
 				}
 			}
 		} catch (SQLException e) {

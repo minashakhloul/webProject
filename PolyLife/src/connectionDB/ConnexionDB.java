@@ -2,6 +2,7 @@ package connectionDB;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -15,13 +16,43 @@ public class ConnexionDB {
 	}
 
 	Connection newConnection() throws SQLException {
-		final String url = "jdbc:mysql://localhost:3306/polylife";
-		Connection conn = DriverManager.getConnection(url, "root", "mina");
+		final String url = "jdbc:mysql://localhost:8889/polylife";
+		Connection conn = DriverManager.getConnection(url, "root", "root");
 		return conn;
 	}
 
-	public ConnexionDB() throws ClassNotFoundException, SQLException {
-		loadDriver();
-		connect = newConnection();
+	public ConnexionDB() {
+		try {
+			loadDriver();
+			connect = newConnection();
+			st = connect.createStatement();
+		}
+		catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public ResultSet selectData(String req)
+	{
+		try {
+			return st.executeQuery(req);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public boolean insertData(String req)
+	{
+		try {
+			return st.execute(req);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 }
