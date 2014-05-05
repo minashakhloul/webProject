@@ -15,8 +15,8 @@ public class ConnexionDB {
 	}
 
 	Connection newConnection() throws SQLException {
-		final String url = "jdbc:mysql://localhost:3306/polylife";
-		Connection conn = DriverManager.getConnection(url, "root", "mina");
+		final String url = "jdbc:mysql://localhost:3306/test";
+		Connection conn = DriverManager.getConnection(url, "root", "");
 		return conn;
 	}
 

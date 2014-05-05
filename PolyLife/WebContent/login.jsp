@@ -5,7 +5,7 @@
 	<form class="well span6 myClass" method="post" action="connexion"id="csslogin">
 		<h4>Sign in </h4>
 		<label>Username :</label>
-		<input type="text" class="span3"align="middle" placeholder="Login..." id="email" name="email"/>
+		<input type="text" class="span3" align="middle" placeholder="Login..." id="email" name="email"/>
 		<label>Password :</label>
 		<input type="password" class="span3" align="middle"placeholder="Password..." id="password" name="password" /></br>
 		<select name="userType" id="type">
