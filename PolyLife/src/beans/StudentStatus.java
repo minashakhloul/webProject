@@ -2,7 +2,7 @@ package beans;
 
 public enum StudentStatus {
 	
-	APP(1),  CONTINUES_TRAINING(2), INITIAL_TRAINING(3), PEIP(4), ;
+	APP(1),  CONTINUES_TRAINING(2), INITIAL_TRAINING(3), PEIP(4), EX(5);
 
 	private int status;
 
@@ -24,6 +24,8 @@ public enum StudentStatus {
 			return INITIAL_TRAINING.getStatus();
 		case CONTINUES_TRAINING:
 			return CONTINUES_TRAINING.getStatus();
+		case EX:
+			return EX.getStatus();
 		default:
 			return 0;
 		}
@@ -38,6 +40,8 @@ public enum StudentStatus {
 			return INITIAL_TRAINING;
 		if (status.equals("continuesTraining"))
 			return CONTINUES_TRAINING;
+		if (status.equals("exStudent"))
+			return EX;
 		return null;
 	}
 	

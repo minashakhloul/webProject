@@ -1,11 +1,10 @@
 /* init page's tags */
 window.onload = function() {
-	
 	document.getElementById("isStudent").style.display = "none";
 	document.getElementById("isProfessor").style.display = "none";
 	document.getElementById("companyBlock").style.display = "none";
 	
-	selectDay = document.getElementById("day");
+	var selectDay = document.getElementById("day");
 	for(var i = 1; i <= 31; i++) {
 		var opt = document.createElement('option');
 		opt.value = i;
@@ -14,7 +13,7 @@ window.onload = function() {
 	}
 
 	var months = new Array("Javier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre");
-	selectMonth = document.getElementById("month");
+	var selectMonth = document.getElementById("month");
 	for(var i = 0; i < 12; i++) {
 		var opt = document.createElement('option');
 		opt.value = i + 1;
@@ -22,7 +21,7 @@ window.onload = function() {
 		selectMonth.appendChild(opt);
 	}
 	
-	selectYear = document.getElementById("year");
+	var selectYear = document.getElementById("year");
 	var today = new Date();
 	for(var i = today.getFullYear(); i >=1920 ; i--) {
 		var opt = document.createElement('option');
@@ -322,6 +321,7 @@ function statusStudentChanges() {
 }
 
 function chargeUserTypeBlock() {
+
 	var i = document.registrationForm.userType.selectedIndex;
 	if(i == 0) {
 		document.getElementById("isStudent").style.display = "none";
@@ -335,19 +335,21 @@ function chargeUserTypeBlock() {
 			document.getElementById("isProfessor").style.display = "none";
 			document.getElementById("isStudent").style.display = "block";
 			document.getElementById("currentYearBlock").style.display = "block";
+			document.getElementById("statusStudentBlock").style.display = "block";
 		}
 		else if(userType == "exStudent") {
 			document.getElementById("isProfessor").style.display = "none";
-			document.getElementById("isStudent").style.display = "block";
 			document.getElementById("currentYearBlock").style.display = "none";
+			document.getElementById("statusStudentBlock").style.display = "none";
+			document.getElementById("isStudent").style.display = "block";
+			document.getElementById("companyBlock").style.display = "block";
+
 		}
 		else {
 			document.getElementById("isStudent").style.display = "none";
 			document.getElementById("isProfessor").style.display = "block";
 		}
-	}
-	
-	
+	}	
 }
 //________________________________________________________________________________________________________________________________
 
@@ -356,6 +358,7 @@ function chargeUserTypeBlock() {
 
 function displayWrongParam(idParam, description) {
 	document.getElementById(idParam).innerHTML = "  " + description;
+	document.getElementById(idParam + "Color").setAttribute("class","control-group error");
 }
 
 function clearErrors() {
@@ -365,6 +368,11 @@ function clearErrors() {
 			spanElements[i].innerHTML = "";
 			break;
 		}
+	}
+	
+	var controlGroupElements = document.getElementsByClassName("control-group error");
+	for (var i = 0; i < controlGroupElements.length; i++) {
+		controlGroupElements[i].setAttribute("class","");
 	}
 }
 
@@ -388,22 +396,7 @@ function studentParamsOK() {
 }
 
 function exStudentParamsOK() {
-	
-	var i = document.registrationForm.statusStudent.selectedIndex;
-	if(i == 0) {
-		displayWrongParam("statusStudentError", "Votre anciène filière ?");
-		return false;
-	}
-	else {
-		var statusStudent = document.registrationForm.statusStudent.options[i].value;
-		if((statusStudent == "apprenticeship" || statusStudent == "initialTraining" || statusStudent == "continuesTraining") 
-				&& !app_fc_fi_exStudentParamsOK())
-			return false;
-			
-		else if(statusStudent == "peip" && !peipExStudentParamsOK())
-			return false;
-	}
-	return true;
+	return app_fc_fi_exStudentParamsOK();
 }
 
 function professorParamsOK() {
@@ -441,10 +434,13 @@ function professorParamsOK() {
 
 function app_fc_fi_exStudentParamsOK() {
 	var i = document.registrationForm.speciality.selectedIndex;
+	
 	if(i == 0) {
 		displayWrongParam("specialityError", "Votre spécialité ?");
 		return false;
 	}
+	
+	
 	
 	var today = new Date();
 	var promo = document.getElementById("promotion").value;
@@ -641,23 +637,3 @@ function registrationOK() {
 	
 	return true;
 }
-//________________________________________________________________________________________________________________________________
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

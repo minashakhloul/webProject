@@ -2,7 +2,7 @@ package beans;
 
 public enum Speciality {
 	
-	INFO(1),  MTX(2), EES(3), PSO(4), ;
+	INFO(1),  MTX(2), EES(3), PSO(4), SANS(5);
 
 	private int speciality;
 
@@ -26,6 +26,8 @@ public enum Speciality {
 			return EES.getSpeciality();
 		case PSO:
 			return PSO.getSpeciality();
+		case SANS:
+			return SANS.getSpeciality();
 		default:
 			return 0;
 		}
@@ -40,6 +42,8 @@ public enum Speciality {
 			return EES;
 		if (speciality.equals("pso"))
 			return PSO;
+		if (speciality.equals(""))
+			return SANS;
 		return null;
 	}
 	

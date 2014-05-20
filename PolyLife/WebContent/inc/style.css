@@ -1,3 +1,12 @@
+.dateForm{
+	width:16%;
+	color:black;
+}
+
+.error {
+	color:#b94a48;
+}
+
 body
 {
 	
