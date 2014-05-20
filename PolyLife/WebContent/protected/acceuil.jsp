@@ -17,10 +17,6 @@
 		<li><a href="/protected/profil.jsp">${utilisateur.getFirstName()} ${utilisateur.getLastName()}</a></li>
 		<li><input type="text"><input type="submit"
 			value="Chercher" /></li>
-		<li><a href="/PolyLife/email/displayMail">
-    			<c:out value="Email"/> 
-			</a>
-		</li> 
 	</ul>
 </div>
 <div id="sidebar-left">

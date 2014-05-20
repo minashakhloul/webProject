@@ -16,14 +16,4 @@
     <servlet-name>Connexion</servlet-name>
     <url-pattern>/connexion</url-pattern>
   </servlet-mapping>
-  
-  <servlet>
-    <servlet-name>DisplayMail</servlet-name>
-    <servlet-class>servlets.email.DisplayMail</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>DisplayMail</servlet-name>
-    <url-pattern>/email/displayMail</url-pattern>
-  </servlet-mapping>
-  
 </web-app>
