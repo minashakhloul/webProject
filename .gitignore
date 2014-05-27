@@ -5,3 +5,6 @@
 /PolyLife/build/classes/beans/LoginFilter.class
 /PolyLife/build/classes/servlets/ServletLogin.class
 >>>>>>> refs/heads/master
+
+/PolyLife/build/classes/beans/Email.class
+/PolyLife/build/classes/servlets/email/DisplayMail.class
