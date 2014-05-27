@@ -10,7 +10,7 @@
 			</c:forEach>
 		</label>
 		<label>Username :</label>
-		<input type="text" class="span3" align="middle" value = "${Client.utilisateur.getLogin()}" id="email" name="email"/>
+		<input type="text" class="span3" align="middle" value = "${Client.user.getLogin()}" id="email" name="email"/>
 		<label>Password :</label>
 		<input type="password" class="span3" align="middle" value ="" id="password" name="password" /></br>
 		<select name="userType" id="type">

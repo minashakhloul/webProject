@@ -1,0 +1,29 @@
+/* Page attributes */
+body {
+	background-color: #99FF99;
+	color: #000;
+	link-color: #F00;
+	vlink-color: #C00;
+	alink-color: #F00
+}
+
+h1 {
+	color: blue;
+	font-family: Helvetica, sans-serif
+}
+
+/* Attributes named with a "#" can apply to any element but only if ID= used. */
+
+/* Heading colors */
+#TextAbout {
+	color: #0000FF;
+	font-family: Helvetica, sans-serif
+} /* blue */
+
+/* Link colors */
+#LinkLocal {
+	color: #00FF00
+} /* green */
+#LinkRemote {
+	color: #ff0000
+} /* red  */
