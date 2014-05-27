@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:javaee="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+  <servlet>
+    <servlet-name>ServletLogin</servlet-name>
+    <servlet-class>servlets.ServletLogin</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletLogin</servlet-name>
+    <url-pattern>/ServletLogin</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>Connexion</servlet-name>
+    <servlet-class>servlets.Connexion</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Connexion</servlet-name>
+    <url-pattern>/connexion</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>DisplayMail</servlet-name>
+    <servlet-class>servlets.email.DisplayMail</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DisplayMail</servlet-name>
+    <url-pattern>/email/displayMail</url-pattern>
+  </servlet-mapping>
+  <listener>
+    <listener-class>servlets.ChatListener</listener-class>
+  </listener>
+  <servlet>
+    <servlet-name>ChatServlet</servlet-name>
+    <servlet-class>servlets.ChatServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ChatServlet</servlet-name>
+    <url-pattern>/ChatServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>ChatNotificationServlet</servlet-name>
+    <servlet-class>servlets.ChatNotificationServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ChatNotificationServlet</servlet-name>
+    <url-pattern>/ChatNotificationServlet</url-pattern>
+  </servlet-mapping>
+</web-app>
