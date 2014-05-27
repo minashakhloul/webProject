@@ -9,7 +9,21 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="./inc/styleChat.css" rel="stylesheet">
+<link type="text/css" rel="stylesheet" href="/PolyLife/inc/styleAcceuil.css" />
 </head>
+<div id="header">
+	<ul id="nav">
+		<!-- -->
+		<li><a href="/PolyLife/protected/acceuil.jsp">Accueil</a></li>
+		<li><a href="/PolyLife/protected/profil/profil.jsp?mail=${utilisateur.getLogin()}">${utilisateur.getFirstName()} ${utilisateur.getLastName()}</a></li>
+		<li><input type="text"><input type="submit"
+			value="Chercher" /></li>
+		<li><a href="/PolyLife/email/displayMail">
+    			<c:out value="Email"/> 
+			</a>
+		</li> 
+	</ul>
+</div>
 <%!public String chatName;
 	public int msgsSize;%>
 <%

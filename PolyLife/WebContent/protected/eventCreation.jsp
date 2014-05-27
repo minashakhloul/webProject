@@ -19,18 +19,21 @@
 		<link type="text/css" rel="stylesheet" href="inc/bootstrap/css/bootstrap.min.css" />
 		<link type="text/css" rel="stylesheet" href="inc/registrationStyle.css" />
 		
-	</head>
-	<body>
-		<div id="header">
-			<ul id="nav">
-				<li><a href="/protected/acceuil.jsp">Accueil</a></li>
-				<li><a href="/protected/profil.jsp">
-				
-				${sessionScope.user.getFirstName()} ${sessionScope.user.getLastName()}</a></li>
-				<li><input type="text"><input type="submit" value="Chercher" /></li>
-				<li><a href="/PolyLife/email/displayMail"> <c:out value="Email" /> </a></li>
-			</ul>
-		</div>
+	<<link type="text/css" rel="stylesheet" href="/PolyLife/inc/styleAcceuil.css" />
+</head>
+<div id="header">
+	<ul id="nav">
+		<!-- -->
+		<li><a href="/PolyLife/protected/acceuil.jsp">Accueil</a></li>
+		<li><a href="/PolyLife/protected/profil/profil.jsp?mail=${utilisateur.getLogin()}">${utilisateur.getFirstName()} ${utilisateur.getLastName()}</a></li>
+		<li><input type="text"><input type="submit"
+			value="Chercher" /></li>
+		<li><a href="/PolyLife/email/displayMail">
+    			<c:out value="Email"/> 
+			</a>
+		</li> 
+	</ul>
+</div>
 		<div id="sidebar-left">
 			<div class="inside-sidebar">Content</div>
 		</div>
