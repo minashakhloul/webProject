@@ -6,15 +6,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Acceuil</title>
-<link type="text/css" rel="stylesheet" href="inc/styleAcceuil.css" />
+<link type="text/css" rel="stylesheet" href="/PolyLife/inc/styleAcceuil.css" />
 </head>
 <!--  <body background="./inc/background-nightlights.jpg"	style="background-repeat: no-repeat">-->
 <!--<form class="well span6 myClass" method="get" action="acceuil" id="cssAcceuil">-->
 <div id="header">
 	<ul id="nav">
 		<!-- -->
-		<li><a href="/protected/acceuil.jsp">Accueil</a></li>
-		<li><a href="/protected/profil.jsp">${utilisateur.getFirstName()} ${utilisateur.getLastName()}</a></li>
+		<li><a href="/PolyLife/protected/acceuil.jsp">Accueil</a></li>
+		<li><a href="/PolyLife/protected/profil/profil.jsp?mail=${utilisateur.getLogin()}">${utilisateur.getFirstName()} ${utilisateur.getLastName()}</a></li>
 		<li><input type="text"><input type="submit"
 			value="Chercher" /></li>
 		<li><a href="/PolyLife/email/displayMail">

@@ -49,10 +49,12 @@ public class ConnexionDB {
 	public boolean insertData(String req)
 	{
 		try {
-			return st.execute(req);
+			st.execute(req);
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return false;
 		}
-		return false;
+		return true;
+		
 	}
 }

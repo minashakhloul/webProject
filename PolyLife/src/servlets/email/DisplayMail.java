@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Map;
 
+import javax.naming.spi.DirStateFactory.Result;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -125,18 +126,49 @@ public class DisplayMail extends HttpServlet {
 		
 		connection = new ConnexionDB();
 		
-		String req = "INSERT INTO messagerie ('subject','content','destinataire','expediteur','seen') VALUES('" + subject + "','" + content + "','" + to + "','" + from + "','1')";
+		String req = "INSERT INTO messagerie (subject,content,destinataire,expediteur,seen) VALUES('" + subject + "','" + content + "','" + to + "','" + from + "','0')";
 		System.out.println(req);
-		if(connection.insertData(req))
+		if(!to.isEmpty() && connection.insertData(req))
 		{
-			request.setAttribute("successMessage", "You're mail has benn sent");
-			doPost(request, response);
+			request.setAttribute("successMessage", "You're mail has been sent");
+			doGet(request, response);
 		}
 		else
 		{
 			request.setAttribute("errorMessage", "Error during sending mail. Please retry later.");
 			getServletContext().getRequestDispatcher("/protected/email/newEmail.jsp").forward(request, response);
 		}
+	}
+	
+	public static ArrayList<String> getEmailAddressesList()
+	{
+		ArrayList<String> list = new ArrayList<String>();
+		ConnexionDB connection = new ConnexionDB();
+		
+		
+		String req = "SELECT email from etudiant";
+		ResultSet rs = connection.selectData(req);
+		try {
+			while(rs.next())
+			{
+				list.add(rs.getString("email"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		req = "SELECT email from professeur";
+		rs = connection.selectData(req);
+			try {
+				while(rs.next())
+				{
+					list.add(rs.getString("email"));
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		return list;
 	}
 	
 }
