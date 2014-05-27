@@ -1,14 +1,30 @@
 package beans;
 
-import java.util.Date;
-
-public class Client {
+public class Client implements Comparable<Client> {
 
 	private String password;
 	private String login;
 	private UserType userType;
 	private String firstName;
 	private String lastName;
+	private int id;
+
+	public Client() {
+	}
+
+	public Client(String password, String login, UserType userType, String firstName, String lastName) {
+		super();
+		this.password = password;
+		this.login = login;
+		this.userType = userType;
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
+
+	public Client(String password, String login, UserType userType, String firstName, String lastName, int id) {
+		this(password, login, userType, firstName, lastName);
+		this.id = id;
+	}
 
 	public void setMotDePasse(String motDePasse) {
 		this.password = motDePasse;
@@ -48,5 +64,21 @@ public class Client {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	@Override
+	public int compareTo(Client c) {
+		if (c.getFirstName().equals(firstName) && c.getLastName().equals(lastName))
+			return 1;
+		else
+			return 0;
 	}
 }

@@ -1,10 +1,8 @@
 package servlets;
 
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -22,9 +20,6 @@ public class ServletLogin extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	private ConnexionDB con = null;
-	private Statement st;
-	private ResultSet rs;
-	private Connection conn;
 	private Client utilisateur;
 
 	public void init(ServletConfig config) throws ServletException {
@@ -45,15 +40,17 @@ public class ServletLogin extends HttpServlet {
 		String userType = utilisateur.getUserType();
 		CreateConnection();
 		if (signOut != null) {
+			disconnect(utilisateur);
 			session.invalidate();
 			this.getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
 		} else if (authentification(email, password, userType)) {
-			session.setAttribute("utilisateur", utilisateur);
+			//storeOnlineUserIntoDB(utilisateur, userType);
+			session.setAttribute("user", utilisateur);
 			this.getServletContext().getRequestDispatcher("/protected/acceuil.jsp").forward(request, response);
 		} else {
 			form.getErreurs().put("authentification", "Unknown email or password. Please try again");
 			session.setAttribute("form", form);
-			session.setAttribute("utilisateur", utilisateur);
+			session.setAttribute("user", utilisateur);
 			this.getServletContext().getRequestDispatcher("/errorLogin.jsp").forward(request, response);
 		}
 		Destroy();
@@ -63,13 +60,7 @@ public class ServletLogin extends HttpServlet {
 	 * Creation d'une connexion avec la bdd
 	 */
 	public void CreateConnection() {
-		try {
-			con = new ConnexionDB();
-			Connection conn = con.connect;
-			st = conn.createStatement();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		con = new ConnexionDB();
 	}
 
 	/**
@@ -78,12 +69,9 @@ public class ServletLogin extends HttpServlet {
 	 */
 	public void Destroy() {
 		try {
-			rs.close();
-			st.close();
-			conn.close();
+			con.destroy();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} catch (NullPointerException e) {
 		}
 	}
 
@@ -100,13 +88,13 @@ public class ServletLogin extends HttpServlet {
 		try {
 			switch (UserType.getTypeOf(typeUser)) {
 			case STUDENT:
-				rs = st.executeQuery("SELECT email,password, nom, prenom FROM etudiant ");
+				rs = con.selectData("SELECT email,password, nom, prenom FROM etudiant ");
 				break;
 			case EX_STUDENT:
-				rs = st.executeQuery("SELECT email,password FROM etudiant ");
+				rs = con.selectData("SELECT email,password FROM etudiant ");
 				break;
 			case PROFESSOR:
-				rs = st.executeQuery("SELECT email,password FROM professeur ");
+				rs = con.selectData("SELECT email,password FROM professeur ");
 				break;
 			}
 			while (rs.next()) {
@@ -124,5 +112,44 @@ public class ServletLogin extends HttpServlet {
 			return false;
 		}
 		return success;
+	}
+
+	private void storeOnlineUserIntoDB(Client client, String typeUser) {
+		ResultSet rs = null;
+		String id = null;
+		try {
+			switch (UserType.getTypeOf(typeUser)) {
+			case STUDENT:
+				rs = con.selectData("SELECT idEtudiant FROM etudiant WHERE email = '" + client.getLogin() + "' AND password = '"
+						+ client.getMotDePasse() + "'");
+				break;
+			case EX_STUDENT:
+				rs = con.selectData("SELECT idEtudiant FROM etudiant WHERE email = '" + client.getLogin() + "' AND password = '"
+						+ client.getMotDePasse() + "'");
+				break;
+			default:
+				break;
+			}
+			while (rs.next()) {
+				id = rs.getString("idEtudiant");
+			}
+			con.insertData("INSERT INTO onlineUsers (idEtudiant) values('" + id + "')");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void disconnect(Client utilisateur2) {
+		String id = null;
+		ResultSet rs = null;
+		try {
+			rs = con.selectData("SELECT idEtudiant FROM etudiant WHERE email = '" + utilisateur2.getLogin() + "' AND password = '"
+					+ utilisateur2.getMotDePasse() + "'");
+			while (rs.next()) {
+				id = rs.getString("idEtudiant");
+			}
+			con.insertData("DELETE FROM onlineUsers WHERE idEtudiant = " + id);
+		} catch (Exception e) {
+		}
 	}
 }
