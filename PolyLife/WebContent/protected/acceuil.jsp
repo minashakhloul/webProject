@@ -14,20 +14,34 @@
 	<ul id="nav">
 		<!-- -->
 		<li><a href="/PolyLife/protected/acceuil.jsp">Accueil</a></li>
-		<li><a href="/PolyLife/protected/profil/profil.jsp?mail=${utilisateur.getLogin()}">${utilisateur.getFirstName()} ${utilisateur.getLastName()}</a></li>
+		<li><a href="/PolyLife/protected/profil/profil.jsp?mail=${utilisateur.getLogin()}">${utilisateur.getFirstName()} ${utilisateur.getLastName()}</a>
+			<li>
+		<li><a href="/PolyLife/protected/chat.jsp">Chat</a></li>
 		<li><input type="text"><input type="submit"
 			value="Chercher" /></li>
-		<li><a href="/PolyLife/email/displayMail">
-    			<c:out value="Email"/> 
-			</a>
-		</li> 
 	</ul>
 </div>
 <div id="sidebar-left">
-	<div class="inside-sidebar">Content</div>
+	<div class="inside-sidebar">
+		Online Users<br>
+		<p>
+			<c:forEach items="${onlineUsers}" var="onlineUsers">
+				<c:out
+					value="${onlineUsers.value.getFirstName()} ${user.getLastName()}">4
+				</c:out>
+			</c:forEach>
+		</p>
+	</div>
 </div>
 <div id="sidebar-right">
-	<div class="inside-sidebar">Content</div>
+	<ul>
+		<li><a href="/PolyLife/ListeAnnonces">Lister les annonces</a></li>
+		<li><a href="/PolyLife/protected/creerAnnonce.jsp">Créer annonce</a></li>
+		<li><a href="/PolyLife/protected/modifierAnnonce.jsp">Modifier une annonce</a></li>
+		<li><a href="/PolyLife/protected/listEvenement.jsp">Lister les annonces</a></li>
+		<li><a href="/PolyLife/creerEvenement">Créer un évènement</a></li>
+		<li><a href="/PolyLife/protected/modifierEvenement.jsp">Modifier évènement</a></li>
+	</ul>
 </div>
 <div id="headcontentzone">
 	<div class="event">
