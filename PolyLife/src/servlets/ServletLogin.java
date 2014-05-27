@@ -68,11 +68,6 @@ public class ServletLogin extends HttpServlet {
 	 * communiquer avec la bdd
 	 */
 	public void Destroy() {
-		try {
-			con.destroy();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
 	}
 
 	/**

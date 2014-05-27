@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import beans.Client;
 import beans.Speciality;
 import beans.StudentStatus;
+import beans.UserType;
 import connectionDB.ConnexionDB;
 
 
@@ -41,19 +42,19 @@ public class ServletRegistration extends HttpServlet {
 	    		Client client = getClient(request);
 		    	HttpSession session = request.getSession();
 		    	session.setAttribute("user", client);
-		    	try {
-					con.destroy();
-				} catch (SQLException e) {			
-					e.printStackTrace();
-				}
+//		    	try {
+//					con.destroy();
+//				} catch (SQLException e) {			
+//					e.printStackTrace();
+//				}
 		    	//response.sendRedirect( eventPage );
 		    	this.getServletContext().getRequestDispatcher( homePage ).forward(request, response);
-		    	try {
-					con.destroy();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+//		    	try {
+//					con.destroy();
+//				} catch (SQLException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
 	    	}
 	    	
 	    	//this.getServletContext().getRequestDispatcher( homePage ).forward(null, response);
@@ -61,10 +62,10 @@ public class ServletRegistration extends HttpServlet {
 	     
 	    private boolean userCreation(HttpServletRequest request) {
 			String userType = request.getParameter( "userType" );
-			switch(userType) {
-				case "student": 	return studentCreation(request);
-				case "exStudent": 	return exStudentCreation(request);
-				case "professor":	return professorCreation(request);
+			switch(UserType.getTypeOf(userType)) {
+				case STUDENT: 	return studentCreation(request);
+				case EX_STUDENT: 	return exStudentCreation(request);
+				case PROFESSOR:	return professorCreation(request);
 			}
 			return false;
 	    }
