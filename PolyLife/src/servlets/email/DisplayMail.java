@@ -79,9 +79,26 @@ public class DisplayMail extends HttpServlet {
 		out.println("<html>");
 		out.println("<head><title> Inbox </title>");
 		out.println("<script type=\"text/javascript\" src=\"../inc/js/email.js\"> </script>");
-		out.println("<link href=\"../inc/style.css\" rel=\"stylesheet\" type=\"text/css\">");
+		out.println("<link type='text/css' rel='stylesheet' href='/PolyLife/inc/styleAcceuil.css' />");
+		out.println("<link href=\"/PolyLife/inc/style.css\" rel=\"stylesheet\" type=\"text/css\">");
+
 		out.println("</head>");
 		out.println("<body>");
+		
+		out.println("<div id='header'>" +
+		"<ul id='nav'>"+
+			"<li><a href='/PolyLife/protected/acceuil.jsp'>Accueil</a></li>" + 
+			"<li><a href='/PolyLife/protected/profil/profil.jsp?mail=" + user.getLogin() + "'>" + user.getFirstName() + " " + user.getLastName() + "</a></li>" +
+			"<li><input type='text'><input type='submit' " +
+				"value='Chercher' /></li>" +
+			"<li><a href='/PolyLife/email/displayMail'>" +
+	    			"<c:out value='Email'/>" + 
+				"</a>" + 
+			"</li>" + 
+		"</ul>" +
+	"</div>");
+		
+		
 		out.println("<div id='headerMail'>");
 		out.println("<a href=\"/PolyLife/email/displayMail\">Refresh</a>");
 		out.println("<a href=\"../protected/email/newEmail.jsp\">New</a>");
