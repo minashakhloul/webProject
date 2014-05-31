@@ -9,4 +9,6 @@ public interface Profil {
 	public String getCompleteName();
 	
 	public void displayInfos(JspWriter out);
+	
+	public String getUser();
 }

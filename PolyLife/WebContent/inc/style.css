@@ -66,25 +66,81 @@ h3{
 }
 
 #mailContent{
-	width: 40%;
+	width: 35%;
 	height: 100%;
 	float: right;
-	border: 2px solid black;
+	border: 2px solid grey;
 	padding: 4px;	
+	-webkit-border-top-right-radius: 6px;
+	-webkit-border-bottom-right-radius: 6px;
+	-moz-border-radius-topright: 6px;
+	-moz-border-radius-bottomright: 6px;
+	border-top-right-radius: 6px;
+	border-bottom-right-radius: 6px;
+}
+
+#successMessage{
+	color: green;
+	font-weight: bold;
+}
+
+#errorMessage{
+	color: red;
+	font-weight: bold;
 }
 
 #mailList{
-	width: 40%;
+	width: 35%;
 	height: 100%;
 	float: left;
-	border: 2px solid black;
+	border: 2px solid grey;
 	padding: 4px;
-	
+	overflow : scroll;
+	-webkit-border-top-left-radius: 6px;
+	-webkit-border-bottom-left-radius: 6px;
+	-moz-border-radius-topleft: 6px;
+	-moz-border-radius-bottomleft: 6px;
+	border-top-left-radius: 6px;
+	border-bottom-left-radius: 6px;
+}
+
+.fromMail{
+	width:39%;
+	padding: 4px;
+}
+.subjectMail{
+	witdh:60%;
+	padding: 4px;
 }
 
 #headerMail{
 	width: 100%;
 	min-height: 15%;
+	margin: 2em;
+}
+
+#headerMail a{
+	background-color: grey;
+	box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7),
+            -1px 2px 20px rgba(255, 255, 255, 0.6) inset;
+    padding: 5px;
+    border-radius: 10px;
+    color: black;
+    text-decoration: none;
+}
+
+#email{
+	height:10%;
+	border-bottom : 2px dotted black;	
+}
+
+#subject{
+	height:10%;
+	border-bottom : 2px dotted black;
+}
+
+#content{
+	height:80%;
 }
 
 table{

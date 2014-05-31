@@ -44,6 +44,12 @@ public class ProfilProf implements Profil{
 	}
 	
 	@Override
+	public String getUser()
+	{
+		return email;
+	}
+	
+	@Override
 	public String getCompleteName()
 	{
 		return firstname + " " + lastname;

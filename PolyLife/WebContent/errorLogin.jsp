@@ -20,6 +20,7 @@
 		</select></br>
 		<input type="submit" class="btn btn-primary" value="Submit" align="right" />
 		<input type="reset" class="btn" name="cancel" value="Cancel" align="left" />
+		<input type="button" class="btn btn-primary" name="Registration" value="Registration" align="left"/>
 	</form>
 </body>	
 </html>

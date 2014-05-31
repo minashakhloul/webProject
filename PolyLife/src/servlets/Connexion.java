@@ -16,7 +16,7 @@ public class Connexion extends HttpServlet {
 	private static final long serialVersionUID = 6157956581918801154L;
 	public static final String ATT_USER = "utilisateur";
 	public static final String ATT_FORM = "form";
-	public static final String ATT_SESSION_USER = "utilisateur";
+	public static final String ATT_SESSION_USER = "user";
 	public static final String VUE = "/login.jsp";
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

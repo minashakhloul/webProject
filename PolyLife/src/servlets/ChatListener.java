@@ -7,7 +7,7 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
-import beans.Chat;
+import beans.ChatApplication;
 import beans.ChatConstants;
 
 public class ChatListener implements ChatConstants, HttpSessionListener, ServletContextListener {
@@ -16,20 +16,19 @@ public class ChatListener implements ChatConstants, HttpSessionListener, Servlet
 	public void sessionCreated(HttpSessionEvent e) {
 		HttpSession sess = e.getSession();
 		ServletContext ctx = sess.getServletContext();
-		ctx.setAttribute("utilisateur", sess.getAttribute("utilisateur"));
+		ctx.setAttribute("user", sess.getAttribute("user"));
 		System.out.println("Chat User Set Up");
 	}
 
 	@Override
 	public void sessionDestroyed(HttpSessionEvent e) {
 		HttpSession session = e.getSession();
-		System.out.println("Chat User Removed");
 	}
 
 	@Override
 	public void contextInitialized(ServletContextEvent e) {
 		ServletContext ctx = e.getServletContext();
-		ctx.setAttribute(APP_STATE, new Chat(new String("C")));
+		ctx.setAttribute(APP_STATE, new ChatApplication());
 		System.out.println("Chat Application Initialized");
 	}
 

@@ -28,7 +28,7 @@ public class ProfilStudent implements Profil {
 		ConnexionDB connexion = new ConnexionDB();
 		
 		String req = "Select email, nom, prenom, dateDeNaissance, nationalite, sex, telephone, promotion, annee, nomStatusEtudiant, nomSpecialite"
-				+ " from etudiant e, statusEtudiant se, specialite s "
+				+ " from etudiant e, statusetudiant se, specialite s "
 				+ "WHERE e.idStatusEtudiant = se.idStatusEtudiant "
 				+ "and e.idSpecialite = s.idSpecialite and"
 				+ " email = '" + mailAddress + "'";
@@ -57,6 +57,11 @@ public class ProfilStudent implements Profil {
 		}
 	}
 	
+	@Override
+	public String getUser()
+	{
+		return email;
+	}
 	
 	@Override
 	public String getCompleteName()
@@ -68,18 +73,18 @@ public class ProfilStudent implements Profil {
 	public void displayInfos(JspWriter out)
 	{
 		try {
-			out.println("<p> Nom : " + firstname + "</p>");
-			out.println("<p> Prénom : " + lastname + "</p>");
-			out.println("<p> Email : " + email + "</p>");
-			out.println("<p> Date de Naissance : " + birthDay + "</p>");
-			out.println("<p> Nationalité : " + nationality + "</p>");
-			out.println("<p> Âge : " + age + "</p>");
-			out.println("<p> Sexe : " + sex + "</p>");
-			out.println("<p> Numéro de téléphone : " + phoneNumber + "</p>");
-			out.println("<p> Statut : " + status + "</p>");
-			out.println("<p> Spécialité : " + spe + "</p>");
-			out.println("<p> Promotion : " + promotion + "</p>");
-			out.println("<p> Année : " + year + "</p>");
+			out.println("<p><b> Nom : </b>" + firstname + "</p>");
+			out.println("<p><b> Pr√©nom : </b>" + lastname + "</p>");
+			out.println("<p><b> Email : </b>" + email + "</p>");
+			out.println("<p><b> Date de Naissance : </b>" + birthDay + "</p>");
+			out.println("<p><b> Nationalit√© : </b>" + nationality + "</p>");
+			out.println("<p><b> √¢ge : </b>" + age + "</p>");
+			out.println("<p><b> Sexe : </b>" + sex + "</p>");
+			out.println("<p><b> Num√©ro de t√©l√©phone : </b>" + phoneNumber + "</p>");
+			out.println("<p><b> Statut : </b>" + status + "</p>");
+			out.println("<p><b> Sp√©cialit√© : </b>" + spe + "</p>");
+			out.println("<p><b> Promotion : </b>" + promotion + "</p>");
+			out.println("<p><b> Ann√©e : </b>" + year + "</p>");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

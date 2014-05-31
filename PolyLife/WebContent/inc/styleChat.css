@@ -1,29 +1,56 @@
-/* Page attributes */
-body {
-	background-color: #99FF99;
-	color: #000;
-	link-color: #F00;
-	vlink-color: #C00;
-	alink-color: #F00
+/* CSS Document */
+input {
+	font: 12px arial;
 }
 
-h1 {
-	color: blue;
-	font-family: Helvetica, sans-serif
+#wrapper {
+	margin : 0  auto;
+	padding-bottom: 25px;
+	background: #EBF4FB;
+	width: 504px;
+	border: 2px solid #ACD8F0;
+	border-radius: 25px;
 }
 
-/* Attributes named with a "#" can apply to any element but only if ID= used. */
+#chat {
+	text-align: left;
+	padding : 10px;
+	background: #fff;
+	height: 270px;
+	width: 430px;
+	overflow: auto;
+	resize: none;
+	border: 2px solid #ACD8F0;
+	border-radius: 25px;
+	margin-left:35px;
+}
+#usermsg {
+	margin-top:15px;
+	margin-left:35px;
+	width: 390px;
+	border: 1px solid #ACD8F0;
+}
 
-/* Heading colors */
-#TextAbout {
-	color: #0000FF;
-	font-family: Helvetica, sans-serif
-} /* blue */
+#submit {
+	width: 60px;
+}
 
-/* Link colors */
-#LinkLocal {
-	color: #00FF00
-} /* green */
-#LinkRemote {
-	color: #ff0000
-} /* red  */
+.error {
+	color: #ff0000;
+}
+
+#menu {
+	padding: 12.5px 25px 12.5px 25px;
+}
+
+.welcome {
+	float: left;
+}
+
+.logout {
+	float: right;
+}
+
+.msgln {
+	margin: 0 0 2px 0;
+}

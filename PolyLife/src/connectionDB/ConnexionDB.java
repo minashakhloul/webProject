@@ -26,18 +26,25 @@ public class ConnexionDB {
 			loadDriver();
 			connect = newConnection();
 			st = connect.createStatement();
-		}
-		catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	
-	public ResultSet selectData(String req)
-	{
+
+	public void close() {
+		try {
+			connect.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public ResultSet selectData(String req) {
 		try {
 			return st.executeQuery(req);
 		} catch (SQLException e) {
@@ -45,9 +52,8 @@ public class ConnexionDB {
 		}
 		return null;
 	}
-	
-	public boolean insertData(String req)
-	{
+
+	public boolean insertData(String req) {
 		try {
 			st.execute(req);
 		} catch (SQLException e) {
@@ -55,6 +61,5 @@ public class ConnexionDB {
 			return false;
 		}
 		return true;
-		
 	}
 }

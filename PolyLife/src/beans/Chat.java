@@ -1,15 +1,18 @@
 package beans;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Chat implements Comparable<Chat> {
 
 	/** The list of messages */
 	private ArrayList<Message> msgs;
 	private String ChatName;
+	private HashMap<Integer, Client> friends;
 
 	public Chat(String name) {
 		msgs = new ArrayList<Message>();
+		friends = new HashMap<Integer, Client>();
 		ChatName = name;
 	}
 
@@ -21,6 +24,15 @@ public class Chat implements Comparable<Chat> {
 		ChatName = chatName;
 	}
 
+	public void addFriendToDiscussion(Client c) {
+		if (!friends.containsKey(c.getId()))
+			friends.put(c.getId(), c);
+	}
+
+	public HashMap<Integer, Client> getFriendsFromDiscussion() {
+		return friends;
+	}
+
 	public ArrayList<Message> getMsgs() {
 		return msgs;
 	}
@@ -29,11 +41,11 @@ public class Chat implements Comparable<Chat> {
 		this.msgs = msgs;
 	}
 
-	public ArrayList<Client> getUsers() {
-		ArrayList<Client> users = new ArrayList<Client>();
+	public HashMap<String, Client> getUsers() {
+		HashMap<String, Client> users = new HashMap<String, Client>();
 		for (Message m : msgs) {
-			if (!users.contains(m.getUser()))
-				users.add(m.getUser());
+			if (!users.containsKey(m.getUser().getLogin()))
+				users.put(m.getUser().getLogin(), m.getUser());
 		}
 		return users;
 	}

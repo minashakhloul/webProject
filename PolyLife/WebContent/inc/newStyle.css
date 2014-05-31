@@ -104,6 +104,9 @@ body {
 form {
 	margin-top: 20px;
 }
+#registration{
+	margin-left:150px;
+}
 
 #errorLabel {
 	color: Red;
