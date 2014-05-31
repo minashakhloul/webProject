@@ -69,6 +69,7 @@ public class OnlineUserNotificationServlet extends HttpServlet {
 				if (!userExists(onlineUsers, user))
 					onlineUsers.add(user);
 			}
+			connection.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

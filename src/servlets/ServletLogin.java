@@ -34,6 +34,7 @@ public class ServletLogin extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String signOut = request.getParameter("signOut");
+		String registration = request.getParameter("registration");
 		HttpSession session = request.getSession();
 		utilisateur = (Client) session.getAttribute("user");
 		ConnexionClient form = (ConnexionClient) request.getAttribute("form");
@@ -45,19 +46,20 @@ public class ServletLogin extends HttpServlet {
 			disconnect();
 			session.invalidate();
 			this.getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
-		} else if (authentification(email, password, userType)) {
+		} else if (authentification(email, password, userType) && registration == null) {
 			storeOnlineUserIntoDB();
 			getOnlineUsers();
 			session.setAttribute("onlineUsers", onlineUsers);
 			session.setAttribute("user", utilisateur);
 			this.getServletContext().getRequestDispatcher("/protected/acceuil.jsp").forward(request, response);
-		} else {
+		} else if (registration == null) {
 			form.getErreurs().put("authentification", "Unknown email or password. Please try again");
 			session.setAttribute("form", form);
 			session.setAttribute("user", utilisateur);
 			this.getServletContext().getRequestDispatcher("/errorLogin.jsp").forward(request, response);
+		} else if (registration != null) {
+			this.getServletContext().getRequestDispatcher("/protected/registration.jsp").forward(request, response);
 		}
-		Destroy();
 	}
 
 	/**
@@ -65,18 +67,6 @@ public class ServletLogin extends HttpServlet {
 	 */
 	public void CreateConnection() {
 		con = new ConnexionDB();
-	}
-
-	/**
-	 * * Destruction de la Connection et la session une fois qu'on a termine de<br>
-	 * communiquer avec la bdd
-	 */
-	public void Destroy() {
-		try {
-			con.destroy();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
 	}
 
 	/**

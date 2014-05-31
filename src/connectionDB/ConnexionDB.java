@@ -28,6 +28,16 @@ public class ConnexionDB {
 			st = connect.createStatement();
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void close() {
+		try {
+			connect.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -45,15 +55,11 @@ public class ConnexionDB {
 
 	public boolean insertData(String req) {
 		try {
-			return st.execute(req);
+			st.execute(req);
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return false;
 		}
-		return false;
-	}
-
-	public void destroy() throws SQLException {
-		st.close();
-		connect.close();
+		return true;
 	}
 }

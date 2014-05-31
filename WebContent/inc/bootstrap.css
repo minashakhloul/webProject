@@ -727,9 +727,6 @@ pre code {
 }
 
 @media ( min-width :992px) {
-	.container {
-		width: 970px
-	}
 }
 
 @media ( min-width :1200px) {
@@ -3954,7 +3951,7 @@ textarea.input-group-sm>.form-control,textarea.input-group-sm>.input-group-addon
 
 .navbar-brand {
 	float: left;
-	padding: 15px 15px;
+	padding: 10px 15px;
 	font-size: 18px;
 	line-height: 20px;
 	height: 50px;
