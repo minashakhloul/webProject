@@ -3,11 +3,6 @@ input {
 	font: 12px arial;
 }
 
-a {
-	color: #0000FF;
-	text-decoration: none;
-}
-
 #wrapper {
 	margin : 0  auto;
 	padding-bottom: 25px;
@@ -27,11 +22,12 @@ a {
 	resize: none;
 	border: 2px solid #ACD8F0;
 	border-radius: 25px;
-	margin: 0 auto;
+	margin-left:35px;
 }
-
 #usermsg {
-	width: 395px;
+	margin-top:15px;
+	margin-left:35px;
+	width: 390px;
 	border: 1px solid #ACD8F0;
 }
 

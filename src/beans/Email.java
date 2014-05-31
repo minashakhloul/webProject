@@ -1,5 +1,8 @@
 package beans;
 
+import java.util.HashMap;
+
+
 public class Email {
 	private int id;
 	private String subject;
@@ -7,12 +10,23 @@ public class Email {
 	private String from;
 	private boolean isSeen;
 	
-	public Email(String subject, String content, String from, boolean isSeen)
+	public Email(int id, String subject, String content, String from, boolean isSeen)
 	{
+		this.id  = id;
 		this.subject = subject;
 		this.content = content;
 		this.from = from;
 		this.isSeen = isSeen;
+	}
+	
+	@Override 
+	public String toString()
+	{
+		HashMap<String, String> hash = new HashMap<String, String>();
+		hash.put("\"subject\"", "\"" + subject + "\"");
+		hash.put("\"content\"", "\"" + content + "\"");
+		hash.put("\"from\"", "\"" + from + "\"");
+		return hash.toString().replaceAll("=", ":");
 	}
 
 	public int getID(){

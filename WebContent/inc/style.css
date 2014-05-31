@@ -1,7 +1,5 @@
 body
 {
-	
-	background-image: url("lamaBack.jpg");
 }
 [class*="span"]
 {
@@ -65,4 +63,30 @@ h3{
 }
 #module #chiffre{
 	width:75px;
+}
+
+#mailContent{
+	width: 49%;
+	height: 100%;
+	float: right;
+	border: 2px solid black;
+	padding: 4px;	
+}
+
+#mailList{
+	width: 49%;
+	height: 100%;
+	float: left;
+	border: 2px solid black;
+	padding: 4px;
+	
+}
+
+#headerMail{
+	width: 100%;
+	min-height: 15%;
+}
+
+table{
+	width: 100%;
 }

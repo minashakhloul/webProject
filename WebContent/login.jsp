@@ -7,14 +7,15 @@
 		<label>Username :</label>
 		<input type="text" class="span3"align="middle" placeholder="Login..." id="email" name="email"/>
 		<label>Password :</label>
-		<input type="password" class="span3" align="middle"placeholder="Password..." id="password" name="password" /></br>
+		<input type="password" class="span3" align="middle"placeholder="Password..." id="password" name="password" /><br>
 		<select name="userType" id="type">
 			<option value="student">STUDENT</option>
 			<option value="exStudent">EX STUDENT</option>
 			<option value="professor">PROFESSOR</option>
-		</select></br>
+		</select><br>
 		<input type="submit" class="btn btn-primary" value="Submit" align="right" />
 		<input type="reset" class="btn" name="cancel" value="Cancel" align="left" />
+		<input type="submit" class="btn btn-primary" id="registration" name="registration" value="Registration" />
 	</form>
 </body>
 </html>

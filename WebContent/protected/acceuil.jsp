@@ -8,14 +8,19 @@
 <title>Acceuil</title>
 <link type="text/css" rel="stylesheet" href="/PolyLife/inc/styleAcceuil.css" />
 <link type="text/css" rel="stylesheet" href="/PolyLife/inc/bootstrap.css" />
-<link type="text/css" rel="stylesheet" href="/PolyLife/inc/bootstrap1.css" />
+<link type="text/css" rel="stylesheet"
+	href="/PolyLife/inc/bootstrap/css/bootstrap.min.css" />
+<script
+	src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script
+	src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 </head>
 <!--<form class="well span6 myClass" method="get" action="acceuil" id="cssAcceuil">-->
 <div class="navbar navbar-inverse">
 	<div class="navbar-header">
 		<button type="button" class="navbar-toggle" data-toggle="collapse"
 			data-target=".navbar-inverse-collapse"></button>
-		<a class="navbar-brand" href="/PolyLife/protected/acceuil.jsp"><img src="/PolyLife/2.jpg" alt="PolyLife" height="30" width="50"></a>
+		<a class="navbar-brand" href="/PolyLife/protected/acceuil.jsp">PolyLife</a>
 	</div>
 	<div class="navbar-collapse collapse navbar-inverse-collapse">
 		<ul class="nav navbar-nav">
@@ -25,8 +30,7 @@
 			<input type="text" class="form-control col-lg-8" placeholder="Search">
 		</form>
 		<ul class="nav navbar-nav navbar-right">
-			<li><a href="/PolyLife/protected/profil.jsp">${user.getFirstName()}
-					${user.getLastName()}</a></li>
+			<li><a href="/PolyLife/protected/profil/profil.jsp?mail=${user.getLogin()}">${user.getFirstName()} ${user.getLastName()}</a></li>
 			<li><a href="/PolyLife/email/displayMail"> <c:out
 						value="Email" />
 			</a></li>
@@ -43,12 +47,31 @@
 	</div>
 </div>
 <div id="sidebar-right">
-	<div class="inside-sidebar">Content</div>
-	<div id="container" class="ui-notify">
-		<!-- 	<div class="ui-notify-message ui-notify-message-style" style="">  -->
-		<!-- 			<h1>A new user has just signed in !</h1>  -->
-		<!--  	</div>  -->
-	</div>
+	<ul class="nav nav-pills nav-stacked" style="max-width: 300px;">
+		<li class="dropdown"><a class="dropdown-toggle"
+			data-toggle="dropdown" href="#">Annonces<span class="caret"></span></a>
+			<ul class="dropdown-menu">
+				<li><a href="/PolyLife/ListeAnnonces">Mes annonces</a></li>
+				<li><a href="/PolyLife/protected/annoncementCreation.jsp">Créer
+						annonce</a></li>
+			</ul></li>
+		<li class="dropdown"><a class="dropdown-toggle"
+			data-toggle="dropdown" href="#">Evènements<span class="caret"></span>
+		</a>
+			<ul class="dropdown-menu">
+				<li><a href="/PolyLife/ListeEvenements">Mes évènements</a></li>
+				<li><a href="/PolyLife/protected/eventCreation.jsp">Créer
+						un évènement</a></li>
+			</ul></li>
+			<li class="dropdown"><a class="dropdown-toggle"
+			data-toggle="dropdown" href="#">Offres d'emploi<span class="caret"></span>
+		</a>
+			<ul class="dropdown-menu">
+				<li><a href="/PolyLife/ListeOffresEmploi">Mes offres d'emploi</a></li>
+				<li><a href="/PolyLife/protected/jobOfferCreation.jsp">Créer
+						un offre d'emploi</a></li>
+			</ul></li>
+	</ul>
 </div>
 <div id="headcontentzone">
 	<div class="event">
